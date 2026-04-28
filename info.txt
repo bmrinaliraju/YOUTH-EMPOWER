@@ -1,0 +1,65 @@
+in skill coaching i need the following things
+1. SSB
+2. UPSC
+3. NDA
+4. SSC GD
+5. GROUPS these should be like options in rectangle boxes if we click on the any option it should lead to the structured preparation roadmap for that option and give youtube links
+
+Each category should have the following:
+1. Structured preparation roadmap
+2. Curated links from trusted platforms
+3. Goal-based learning path UI
+4. Video links
+5. PDF links
+
+in vigyan yuvatha i need the following things
+robotics, avionics, ai/ml, space tech, 
+these should be like options in rectangle boxes if we click on the any option it should give list of top 5 youtube channels for that option and give youtube links
+
+Each category should have the following:
+1. Structured preparation roadmap
+2. Curated links from trusted platforms
+3. Goal-based learning path UI
+4. Video links
+5. PDF links
+in start up and stand up platform 
+1. Users can create an account and login
+2. Users can submit startup ideas in the from of text
+3. Users can view other startup ideas
+4. Users can upvote startup ideas
+5. Admin can approve startup ideas
+6. Admin can mark startup ideas as "Funded"
+7. Users can view "Top Ideas"
+8. Startup guidance section
+in role models i need the following sucessfull people from various fields 
+1. Defence
+2. Engineering
+3. Medicine
+4. Civil Services
+5. Other
+Each category should have the following:
+1. Name of the person
+2. Image of the person
+3. Story of the person
+4. Achievements of the person
+5. Inspirational quotes of the person
+in volunteer connect platform i need the following things
+Users can create events
+Users can join events
+Track volunteer hours
+Leaderboard system
+Event gallery with images 
+in blood donation platform i need the following things
+Donor registration: Name, Blood Group, Location
+Search donors nearby
+Emergency alert system
+Reward active donors
+Dashboard showing donation stats 
+in local problem reporting system i need the following things
+Users can report: Garbage, Potholes, Water leakage, Streetlight issues
+Features: Upload image, Add location (map integration)
+Status tracking: Pending, In Progress, Resolved
+in current affairs and geopolitics i need the following things
+Sections: Daily current affairs, Defence updates, International relations
+Features: News cards, Category filters, Simple summaries for cadets 
+in the top right corner we have to give an login option which will direct us to this webiste : https://ncc.manabadi.info/ this link should be opened  

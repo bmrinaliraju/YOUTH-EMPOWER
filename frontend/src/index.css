@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #0B3D91;
+  --color-secondary: #556B2F;
+  --color-accent-light: #f3f4f6;
+  --color-accent-dark: #1f2937;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-accent-light);
+  color: #111827;
+}
+
+.dark body {
+  background-color: var(--color-accent-dark);
+  color: #f9fafb;
+}

@@ -1,0 +1,8 @@
+the redirecting links should be working in the options of skill dvelopment and vignan yuvatha
+if we click on videos it should take us to utube if we update inventory in the blood bank it should update in the blood bank list current inventory Overview
+In the skill coaching if we click on the video links tit should direct us to the YouTube video and even if we click on the PDFs,tips etc they should open 
+In vigyan yuvtha if we click on the links it should open 
+In motivation and role models the images of persons should be displayed 
+In volunteer connect if we click on the join event it should show the details and then joined
+In local problem reporting only location manually typed and upload photo should be working 
+In current affairs read full article should be working 
