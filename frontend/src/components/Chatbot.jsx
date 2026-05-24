@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Image as ImageIcon, Loader2, Trash2, Bot, User, ChevronDown } from 'lucide-react';
 
 // ── Groq free API key ──────────────────────────────────────────────────────────
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 const TEXT_MODEL = 'llama-3.3-70b-versatile';          // current free model on Groq
 const VISION_MODEL = 'llama-3.2-90b-vision-preview';   // current vision model on Groq
 
