@@ -61,7 +61,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className="flex items-center justify-between h-16 px-6 bg-[#092e6e] border-b border-[#1c55b5] flex-shrink-0">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center p-1">
-              <img src="/src/assets/yeplogo.jpeg" alt="YOUTH Logo" className="w-full h-full object-contain" />
+              <img src="/yeplogo.jpeg" alt="YOUTH Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-sm font-bold uppercase tracking-wider leading-tight">YOUTH EMPOWER PORTAL</span>
           </div>

@@ -66,7 +66,7 @@ const Navbar = ({ toggleSidebar, toggleDarkMode, darkMode }) => {
             <Menu size={24} />
           </button>
           <img
-            src="/src/assets/yeplogo.jpeg"
+            src="/yeplogo.jpeg"
             alt="YOUTH Logo"
             className="w-8 h-8 mr-2 hidden sm:block object-contain"
           />
