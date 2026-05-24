@@ -1,18 +1,75 @@
 import React, { useState } from 'react';
-import { Lightbulb, ThumbsUp, CheckCircle, Award, BookOpen, Send } from 'lucide-react';
+import { Lightbulb, ThumbsUp, ThumbsDown, CheckCircle, Award, BookOpen, Send, Share2, Clipboard, MessageCircle } from 'lucide-react';
 
 const StartupStandup = () => {
   const [isAdmin, setIsAdmin] = useState(false); // Toggle for demo purposes
   const [ideas, setIdeas] = useState([
-    { id: 1, title: 'Drone-based Local Delivery', description: 'Using automated drones to deliver medical supplies to remote NCC camps.', author: 'Cadet Rahul', upvotes: 124, approved: true, funded: false },
-    { id: 2, title: 'AI Driven Training Analytics', description: 'Platform to track cadet fitness and target practice using computer vision.', author: 'Cadet Priya', upvotes: 89, approved: true, funded: true },
-    { id: 3, title: 'Smart Uniform Embedded Sensors', description: 'Monitoring heart rate and hydration levels during extreme weather drills.', author: 'Cadet Amit', upvotes: 45, approved: false, funded: false },
+    { id: 1, title: 'Drone-based Local Delivery', description: 'Using automated drones to deliver medical supplies to remote YOUTH camps.', author: 'Cadet Rahul', likes: 124, dislikes: 5, userReaction: null, approved: true, funded: false },
+    { id: 2, title: 'AI Driven Training Analytics', description: 'Platform to track cadet fitness and target practice using computer vision.', author: 'Cadet Priya', likes: 89, dislikes: 2, userReaction: null, approved: true, funded: true },
+    { id: 3, title: 'Smart Uniform Embedded Sensors', description: 'Monitoring heart rate and hydration levels during extreme weather drills.', author: 'Cadet Amit', likes: 45, dislikes: 0, userReaction: null, approved: false, funded: false },
   ]);
+  const [activeShareId, setActiveShareId] = useState(null);
 
   const [newIdea, setNewIdea] = useState({ title: '', description: '' });
 
-  const handleUpvote = (id) => {
-    setIdeas(ideas.map(idea => idea.id === id ? { ...idea, upvotes: idea.upvotes + 1 } : idea));
+  const handleLike = (id) => {
+    setIdeas(ideas.map(idea => {
+      if (idea.id === id) {
+        let diffLike = 0;
+        let diffDislike = 0;
+        let nextReaction = null;
+
+        if (idea.userReaction === 'like') {
+          diffLike = -1;
+          nextReaction = null;
+        } else if (idea.userReaction === 'dislike') {
+          diffLike = 1;
+          diffDislike = -1;
+          nextReaction = 'like';
+        } else {
+          diffLike = 1;
+          nextReaction = 'like';
+        }
+
+        return {
+          ...idea,
+          likes: idea.likes + diffLike,
+          dislikes: idea.dislikes + diffDislike,
+          userReaction: nextReaction
+        };
+      }
+      return idea;
+    }));
+  };
+
+  const handleDislike = (id) => {
+    setIdeas(ideas.map(idea => {
+      if (idea.id === id) {
+        let diffLike = 0;
+        let diffDislike = 0;
+        let nextReaction = null;
+
+        if (idea.userReaction === 'dislike') {
+          diffDislike = -1;
+          nextReaction = null;
+        } else if (idea.userReaction === 'like') {
+          diffLike = -1;
+          diffDislike = 1;
+          nextReaction = 'dislike';
+        } else {
+          diffDislike = 1;
+          nextReaction = 'dislike';
+        }
+
+        return {
+          ...idea,
+          likes: idea.likes + diffLike,
+          dislikes: idea.dislikes + diffDislike,
+          userReaction: nextReaction
+        };
+      }
+      return idea;
+    }));
   };
 
   const handleApprove = (id) => {
@@ -26,12 +83,18 @@ const StartupStandup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newIdea.title && newIdea.description) {
+      // Redirect to government startup website as requested
+      window.open('https://www.startupindia.gov.in/', '_blank');
+      
+      // Optionally still add it to local state for demo purposes
       setIdeas([{
         id: ideas.length + 1,
         title: newIdea.title,
         description: newIdea.description,
         author: 'Current User',
-        upvotes: 0,
+        likes: 0,
+        dislikes: 0,
+        userReaction: null,
         approved: false,
         funded: false
       }, ...ideas]);
@@ -39,7 +102,7 @@ const StartupStandup = () => {
     }
   };
 
-  const topIdeas = [...ideas].filter(i => i.approved).sort((a, b) => b.upvotes - a.upvotes);
+  const topIdeas = [...ideas].filter(i => i.approved).sort((a, b) => b.likes - a.likes);
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -48,12 +111,7 @@ const StartupStandup = () => {
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Startup / Standup Platform</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">Submit, explore, and fund innovative ideas</p>
         </div>
-        <button 
-          onClick={() => setIsAdmin(!isAdmin)}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${isAdmin ? 'bg-red-100 text-red-700 border border-red-300' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
-        >
-          {isAdmin ? 'Admin View: ON' : 'Switch to Admin View'}
-        </button>
+
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -90,7 +148,7 @@ const StartupStandup = () => {
                 />
               </div>
               <button type="submit" className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#0B3D91] hover:bg-[#092e6e] transition-colors">
-                <Send size={16} className="mr-2" /> Submit Idea
+                <Send size={16} className="mr-2" /> Submit to Startup India
               </button>
             </form>
           </div>
@@ -134,7 +192,7 @@ const StartupStandup = () => {
                   <p className="text-sm text-blue-100 mb-3 line-clamp-2">{idea.description}</p>
                   <div className="flex justify-between items-center text-xs font-medium">
                     <span className="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded flex items-center">
-                      <ThumbsUp size={12} className="mr-1" /> {idea.upvotes}
+                      <ThumbsUp size={12} className="mr-1" /> {idea.likes}
                     </span>
                     {idea.funded && <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded">Funded</span>}
                   </div>
@@ -164,14 +222,63 @@ const StartupStandup = () => {
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Submitted by: {idea.author}</p>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">{idea.description}</p>
                 
-                <div className="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-700">
-                  <button 
-                    onClick={() => handleUpvote(idea.id)}
-                    className="flex items-center text-gray-600 dark:text-gray-400 hover:text-[#0B3D91] dark:hover:text-blue-400 transition-colors"
-                  >
-                    <ThumbsUp size={18} className="mr-1.5" /> 
-                    <span className="font-medium">{idea.upvotes} Upvotes</span>
-                  </button>
+                <div className="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-700 relative w-full">
+                  <div className="flex items-center space-x-4">
+                    <button 
+                      onClick={() => handleLike(idea.id)}
+                      className={`flex items-center text-xs transition-colors font-medium focus:outline-none cursor-pointer ${
+                        idea.userReaction === 'like' ? 'text-[#0B3D91] dark:text-blue-400 font-bold' : 'text-gray-500 hover:text-[#0B3D91]'
+                      }`}
+                    >
+                      <ThumbsUp size={16} className="mr-1" /> 
+                      <span>{idea.likes} Likes</span>
+                    </button>
+
+                    <button 
+                      onClick={() => handleDislike(idea.id)}
+                      className={`flex items-center text-xs transition-colors font-medium focus:outline-none cursor-pointer ${
+                        idea.userReaction === 'dislike' ? 'text-red-600 dark:text-red-400 font-bold' : 'text-gray-500 hover:text-red-500'
+                      }`}
+                    >
+                      <ThumbsDown size={16} className="mr-1" /> 
+                      <span>{idea.dislikes} Dislikes</span>
+                    </button>
+
+                    <button 
+                      onClick={() => setActiveShareId(activeShareId === idea.id ? null : idea.id)}
+                      className="flex items-center text-xs text-gray-500 hover:text-[#556B2F] transition-colors font-medium focus:outline-none cursor-pointer"
+                    >
+                      <Share2 size={16} className="mr-1" /> 
+                      <span>Share</span>
+                    </button>
+                  </div>
+
+                  {activeShareId === idea.id && (
+                    <div className="absolute left-0 bottom-10 z-20 w-44 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-150 dark:border-gray-700 py-1 text-xs text-gray-700 dark:text-gray-300">
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(`https://ncc-unityhub.gov.in/startup/idea/${idea.id}`);
+                          alert('Link copied to clipboard!');
+                          setActiveShareId(null);
+                        }}
+                        className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-1.5 cursor-pointer"
+                      >
+                        <Clipboard size={14} />
+                        <span>Copy Link</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          const message = `Check out this startup idea on YOUTH Unity Hub: *${idea.title}* - "${idea.description}"`;
+                          window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+                          setActiveShareId(null);
+                        }}
+                        className="w-full text-left px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-1.5 cursor-pointer"
+                      >
+                        <MessageCircle size={14} className="text-green-500" />
+                        <span>Share on WhatsApp</span>
+                      </button>
+                    </div>
+                  )}
                   
                   {/* Admin Controls */}
                   {isAdmin && (

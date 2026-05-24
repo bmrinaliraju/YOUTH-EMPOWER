@@ -1,6 +1,0 @@
-in blood donation platform add blood banks 
-are you a donor option or are you a blood bank option or reciever 
-in donor section add option for how many times you donated ,last donation date ,blood group ,location 
-in blood bank section add option for blood group available ,location , available units ,last donation date 
-in receiver section add option for blood group needed ,location , number of units needed , urgency
-and in reciever section if we request for blood it should notify the nearby blood banks
