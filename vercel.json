@@ -1,0 +1,7 @@
+{
+  "experimental": {
+    "frontend": {
+      "root": "frontend"
+    }
+  }
+}
