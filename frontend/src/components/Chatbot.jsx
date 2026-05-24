@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Image as ImageIcon, Loader2, Trash2, Bot, User, ChevronDown } from 'lucide-react';
 
 // ── Groq free API key ──────────────────────────────────────────────────────────
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY; // Make sure to set this in your .env file
 const TEXT_MODEL = 'llama-3.3-70b-versatile';          // current free model on Groq
 const VISION_MODEL = 'llama-3.2-90b-vision-preview';   // current vision model on Groq
 
